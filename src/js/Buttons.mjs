@@ -1,4 +1,4 @@
-import { battle } from "./main";
+import { battle } from "./Starter.mjs";
 export default class Buttons {
     constructor() {
         document.addEventListener("click", function (event) {

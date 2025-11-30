@@ -1,2 +1,3 @@
-import Starter from "./Starter.mjs";
+import Starter from "./Starter.mjs"
 new Starter();
+// new Starter();

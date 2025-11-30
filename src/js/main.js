@@ -2,7 +2,6 @@ import { Battle } from "./Battle.mjs";
 import Starter from "./Starter.mjs"
 
 new Starter();
-export const battle = new Battle(document.querySelector("#battle"));
 // battle.start();
 // new Battle(document.querySelector("#battle"));
 // (async function () {
