@@ -1,4 +1,2 @@
-import { loadHeader, loadFooter } from "./dinamic-filling.mjs";
-
-loadHeader();
-loadFooter();
+import Starter from "./Starter.mjs";
+new Starter();
