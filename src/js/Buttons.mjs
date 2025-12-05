@@ -1,3 +1,4 @@
+import { Saver } from "./Saver.mjs";
 import { battle } from "./Starter.mjs";
 export default class Buttons {
     constructor() {
@@ -17,6 +18,8 @@ export default class Buttons {
                 case "like":
                     document.querySelector(`#${button.dataset.type}`).classList.add("choosen");
                     button.classList.add("choosen");
+                    Saver.saveLike(button.dataset.type, button.dataset.id);
+                    console.table(Saver.getLikes());
                     setTimeout(function () {
                         battle.start();
                         document.querySelector("h2").scrollIntoView({ behavior: "smooth", block: "center" });
