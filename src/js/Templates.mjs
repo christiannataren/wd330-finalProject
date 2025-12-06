@@ -1,13 +1,21 @@
-export function loading() {
-    return `<div class="loading"></div>`;
-}
+export class Templates {
+    static loading() {
+        return `<div class="loading"></div>`;
+    }
 
 
 
-export function catDog(cat, dog) {
-    // console.table(cat[0]);
-    // console.table(dog[0]);
-    return `
+    static errorView() {
+        return `
+        <div class="error-container">
+            <p>Meow!! 🚫 You are going to fast. Calm down!</p>
+            <button data-action="start"  class="error">Try again</button>
+        </div>
+        `
+    }
+
+    static catDog(cat, dog) {
+        return `
     <div id="options">
     <div id="cat" class="option" >
      <div class="values">
@@ -40,4 +48,5 @@ export function catDog(cat, dog) {
 </div>
     `
 
+    }
 }

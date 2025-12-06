@@ -12,6 +12,7 @@ export default class Buttons {
             let button = event.target;
             switch (action) {
                 case "start":
+                    Saver.resetLikes();
                     battle.start();
                     break;
 

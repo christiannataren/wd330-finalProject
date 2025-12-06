@@ -15,7 +15,6 @@ class Animal {
 export class Cat extends Animal {
     constructor() {
         super("https://api.thecatapi.com", "live_ddhEL32ozSG4mKF2qv7GiURNcKWMEb6KAuwJT80whiNIZChhi7fyrV090y8zxAsX");
-
     }
 
 
@@ -25,6 +24,7 @@ export class Cat extends Animal {
 export class Dog extends Animal {
     constructor() {
         super("https://api.thedogapi.com", "live_DNVZgUgPmsTVly7WdebAm2Ygtgt9sa2dKO6aPXH2ddnYW1wOQXlJTr5zlvR6TAzU");
+
     }
 
 

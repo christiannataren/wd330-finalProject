@@ -9,6 +9,9 @@ export class Saver {
 
     }
 
+    static resetLikes() {
+        window.localStorage.removeItem(Saver.KEY_LIKES);
+    }
     static getLikes() {
         let data_likes = this.getKey(this.KEY_LIKES);
         let likes = [];

@@ -1,5 +1,5 @@
 import { Cat, Dog } from "./Animals.mjs";
-import { catDog, loading } from "./Templates.mjs";
+import { Templates } from "./Templates.mjs";
 import { Saver } from "./Saver.mjs";
 export class Battle {
     constructor(screen) {
@@ -9,7 +9,7 @@ export class Battle {
         this.dog = new Dog();
     }
     async verifyWinner() {
-        if (Saver.getLikes().length >= 10) {
+        if (Saver.getLikes().length >= 11) {
             let likes = Saver.getLikes();
             let dogs = likes.filter(animal => animal.type == "dog");
             let cats = likes.filter(animal => animal.type == "cat");
@@ -27,23 +27,35 @@ export class Battle {
         let dog = await this.dog.get();
         try {
             cat[0].breeds[0];
+            dog[0].breeds[0].name;
         } catch {
-            this.start();
+            this.error();
         }
         this.loadOptions(cat, dog);
     }
 
     loading() {
-        this.screen.innerHTML = loading();
+        this.addToScreen(Templates.loading());
+    }
+    error() {
+        this.addToScreen(Templates.errorView());
+
+    }
+    addToScreen(html) {
+        this.screen.innerHTML = html;
+
     }
 
     loadOptions(cat, dog) {
-        let options = catDog(cat, dog);
-        this.screen.innerHTML = options;
-
-    }
-
-    error() {
+        let options = null;
+        try {
+            options = Templates.catDog(cat, dog);
+        } catch { }
+        if (options == null) {
+            this.error();
+            return;
+        }
+        this.addToScreen(options);
 
     }
 
