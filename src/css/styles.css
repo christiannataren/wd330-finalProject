@@ -3,12 +3,22 @@
     --secondary-color: #551a8b;
     --third-color: #FFA239;
     --fourth-color: #FEEE91;
+    --green: rgb(213, 248, 160);
+    --font-header: "Poller One", Helvetica, sans-serif
 }
 
 * {
     padding: 0;
     margin: 0;
     font-family: "Libertinus Serif Display", Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+    color: var(--secondary-color);
+    font-weight: 100;
+    font-family: "Poller One", Helvetica, sans-serif;
 }
 
 * img {
@@ -95,8 +105,71 @@ main {
     padding: 0 1em;
 }
 
+.current::before {
+    content: "🐾";
+}
+
+.current {
+    background-color: var(--third-color);
+}
+
+
+
+.result {
+    display: grid;
+    justify-items: center;
+    gap: 0.2em;
+    margin: 1em 0;
+
+    p {
+        font-size: 1.5em;
+        color: var(--secondary-color);
+        font-family: var(--font-header);
+        text-align: center;
+    }
+
+
+
+}
+
+.gift-container {
+    width: 5em;
+    height: 5em;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-top: 0.5em;
+
+
+
+    img {
+        width: 5em;
+        height: auto;
+
+    }
+}
+
+.doggy::before {
+    content: "🐶";
+
+}
+
+.kitty::before {
+    content: "😸";
+}
+
+.spinning {
+    font-size: 5em;
+
+    animation-name: spin-clock;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+
+}
+
 #battle {
-    margin: 0 0.5em;
+    margin: 0.8em 0.5em;
     border-style: solid;
     border-width: 2px 3px 3px 2px;
     border-color: rgb(0, 0, 0, 0.4) rgb(0, 0, 0, 0.6) rgb(0, 0, 0, 0.6) rgb(0, 0, 0, 0.4);
@@ -106,6 +179,7 @@ main {
     align-items: center;
     justify-content: center;
     box-shadow: 1px 1px 7px 0px var(--secondary-color);
+
 
     .error-container {
         background-color: rgb(255, 180, 180);
@@ -142,23 +216,24 @@ main {
     gap: 1em;
 }
 
+#img-container {
+    position: relative;
+    margin-bottom: 1em;
+}
+
 .option {
+
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr;
     justify-items: center;
     padding: 1em 0.5em;
     border-radius: 1em;
     align-items: center;
     column-gap: 0.5em;
-
-    span {
-        display: block;
-
-    }
+    row-gap: 0.8em;
+    min-height: 90%;
 
     img {
-        grid-row: 1/3;
-        grid-column: 2/3;
         border-radius: 1em;
 
     }
@@ -167,8 +242,16 @@ main {
         font-weight: bold
     }
 
+
     .values {
         justify-self: flex-start;
+        position: absolute;
+        border-radius: 5px;
+        background-color: var(--fourth-color);
+
+        padding: 0.3em;
+        border: 1px solid var(--secondary-color);
+
     }
 
     .value {
@@ -185,8 +268,12 @@ main {
     }
 
     button {
-        background-color: var(--primary-color);
-        font-size: small;
+        background-color: var(--green);
+        /* grid-column: 1/3; */
+        width: 100%;
+        margin-bottom: 0.5em;
+        align-self: flex-start;
+
     }
 
 
@@ -195,6 +282,23 @@ main {
 
 
 
+}
+
+.values:nth-of-type(even) {
+    right: 1em;
+    top: -1em;
+}
+
+.values:nth-of-type(odd) {
+
+    bottom: -1em;
+    left: 1em;
+
+}
+
+#dog .values {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--fourth-color);
 }
 
 @keyframes beating {
@@ -276,8 +380,12 @@ button {
     border: 1px solid rgb(0, 0, 0, 0.4);
     font-size: 1.3em;
     padding: 0.4em 0.6em;
-    border-radius: 1em;
+    /* border-radius: 1em; */
 
+}
+
+.loading {
+    text-align: center
 }
 
 .loading::before {
@@ -311,14 +419,7 @@ button {
 }
 
 
-h1,
-h2,
-h3 {
-    color: var(--secondary-color);
-    margin-bottom: 0.2em;
-    font-weight: 100;
-    font-family: "Poller One", Helvetica, sans-serif;
-}
+
 
 #social-media {
     display: flex;
@@ -329,14 +430,66 @@ h3 {
 
 #favorites {
     display: grid;
+    margin-top: 1em;
 }
 
 #favorites .fav-container {
-    /* min-width: 5em; */
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     min-height: 10em;
-    border: 1px solid red;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
+    column-gap: 0.5em;
+    justify-items: center;
+    padding: 0.4em;
+    background-color: var(--fourth-color);
+    border-radius: 6px;
+    /* padding: ; */
+    box-shadow: 0 0 5px 2px var(--secondary-color);
 
+    img {
+        border-radius: 6px;
+        box-shadow: 0 0 3px 2px var(--secondary-color);
+        align-self: center;
+    }
+
+    button {
+        width: 100%;
+        background-color: var(--secondary-color);
+        color: var(--fourth-color);
+    }
+
+    span {
+        display: block;
+        /* background-color: #FFA239; */
+    }
+
+    span.value {
+        margin-left: 0.2em;
+        margin-bottom: 0.3em;
+    }
+
+    span.hvalue {
+        font-weight: bold;
+    }
+
+    h3 {
+        grid-column: 1/3;
+        margin-bottom: 0.3em;
+    }
+
+}
+
+.empty-favs {
+    p {
+        color:  var(--secondary-color);
+        background-color: var(--fourth-color);
+        font-weight: bold;
+        font-size: 1.2em;
+        padding: 0.4em;
+        border-radius: 4px;
+        text-align: center;
+
+    }
 }
 
 

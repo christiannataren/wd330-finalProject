@@ -1,8 +1,8 @@
 import { Battle } from "./Battle.mjs";
 import Starter from "./Starter.mjs"
+import { getRandomNumber } from "./Utils.mjs";
 
-new Starter();
-// battle.start();
+new Starter("/");
 // new Battle(document.querySelector("#battle"));
 // (async function () {
 //     let dog = await new Dog().get();

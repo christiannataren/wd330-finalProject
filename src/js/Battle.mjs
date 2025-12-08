@@ -7,20 +7,45 @@ export class Battle {
 
         this.cat = new Cat();
         this.dog = new Dog();
+        this.winnerChoices = 11;
     }
-    async verifyWinner() {
-        if (Saver.getLikes().length >= 11) {
+    verifyWinner() {
+        if (Saver.getLikes().length >= this.winnerChoices) {
+            console.log("Likes son mayores");
             let likes = Saver.getLikes();
             let dogs = likes.filter(animal => animal.type == "dog");
             let cats = likes.filter(animal => animal.type == "cat");
-            console.log(dogs);
-            console.log(cats);
+            this.addToScreen(Templates.analizingResults());
+            let result = "";
+            if (dogs.length > cats.length) {
+                result = "dog";
+
+
+
+
+            } else {
+                result = "cat";
+            }
+            setTimeout(() => {
+                this.addToScreen(Templates.results(result));
+            }, 3000);
+            return true;
         }
 
         return false;
     }
     async start() {
-        this.verifyWinner();
+        // if (true) {
+        //     setInterval( () => {
+        //         this.addToScreen(Templates.analizingResults());
+        //     }, 1000);
+        //     return;
+        // }
+        console.log(this.verifyWinner());
+        if (this.verifyWinner()) {
+            console.log("se escapa");
+            return;
+        }
 
         this.loading();
         let cat = await this.cat.get();
@@ -58,6 +83,7 @@ export class Battle {
         this.addToScreen(options);
 
     }
+
 
 
 }

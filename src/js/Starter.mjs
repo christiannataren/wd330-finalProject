@@ -4,9 +4,8 @@ import { getLocation } from "./Utils.mjs";
 export let battle = undefined;
 import { Battle } from "./Battle.mjs";
 export default class Starter {
-    constructor() {
-
-        loadHeader();
+    constructor(file) {
+        loadHeader(file);
         loadFooter();
         new Buttons();
         this.parseLocation();

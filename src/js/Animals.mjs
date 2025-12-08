@@ -5,10 +5,16 @@ class Animal {
         this.url = url;
         this.searchEnpoint = "/v1/images/search"
         this.params = { has_breeds: true, "api_key": api_key }
+        this.animalEndpoint = "/v1/images/"
     }
     async get() {
         let data = await getJson(this.url + this.searchEnpoint, this.params);
         return data;
+    }
+    async getAnimal(id) {
+        let animal = await getJson(this.url + this.animalEndpoint + id, this.params);
+        return animal;
+
     }
 }
 
