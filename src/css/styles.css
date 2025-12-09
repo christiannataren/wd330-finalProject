@@ -68,6 +68,20 @@ nav {
         justify-content: space-around;
         justify-items: center;
 
+        li:hover {
+            /* background-color: var(--secondary-color); */
+            filter: brightness(0.80);
+
+            a {
+                /* color: var(--fourth-color); */
+                font-size: 1.1em;
+            }
+        }
+
+        li:active {
+            opacity: 0.5;
+        }
+
         li {
             width: 100%;
             list-style: none;
@@ -79,6 +93,9 @@ nav {
             background-color: var(--fourth-color);
             padding: 0.2em;
             font-weight: bold;
+
+
+
 
 
         }
@@ -221,6 +238,10 @@ main {
     margin-bottom: 1em;
 }
 
+.hvalue {
+    font-weight: bold
+}
+
 .option {
 
     display: grid;
@@ -238,9 +259,7 @@ main {
 
     }
 
-    .hvalue {
-        font-weight: bold
-    }
+
 
 
     .values {
@@ -267,12 +286,14 @@ main {
         content: "💖";
     }
 
+
     button {
         background-color: var(--green);
         /* grid-column: 1/3; */
         width: 100%;
         margin-bottom: 0.5em;
         align-self: flex-start;
+
 
     }
 
@@ -282,6 +303,10 @@ main {
 
 
 
+}
+
+button:hover {
+    filter: brightness(0.80);
 }
 
 .values:nth-of-type(even) {
@@ -433,18 +458,24 @@ button {
     margin-top: 1em;
 }
 
+
+
 #favorites .fav-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
     min-height: 10em;
     margin-bottom: 1em;
+
     column-gap: 0.5em;
     justify-items: center;
-    padding: 0.4em;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 0 0.4em;
     background-color: var(--fourth-color);
     border-radius: 6px;
     /* padding: ; */
     box-shadow: 0 0 5px 2px var(--secondary-color);
+    padding-bottom: 1em;
 
     img {
         border-radius: 6px;
@@ -472,16 +503,108 @@ button {
         font-weight: bold;
     }
 
-    h3 {
+    .header-animal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         grid-column: 1/3;
         margin-bottom: 0.3em;
+        background-color: var(--third-color);
+        width: 104%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        text-align: center;
+        height: 2em;
+        margin-bottom: 1em;
+        align-self: self-start;
     }
 
 }
 
+dialog::backdrop {
+    background-color: var(--secondary-color);
+    opacity: 0.5;
+}
+
+dialog:open {
+    margin: 1em auto;
+    width: 90%;
+    min-height: 90%;
+    border: none;
+    background-color: var(--fourth-color);
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    button {
+        background-color: var(--secondary-color);
+        color: var(--fourth-color);
+    }
+
+    button::before {
+        content: "❌";
+        font-size: 1em;
+    }
+
+    .close-dialog {
+        background-color: transparent;
+        position: fixed;
+        right: 1em;
+        top: 1em;
+        border: none;
+    }
+
+    #dialog-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        margin: 0 1em;
+        padding-top: 4em;
+        gap: 0.7em;
+        align-items: center;
+        justify-items: center;
+
+        h3,
+        p {
+            grid-column: 1/3;
+        }
+
+        p {
+            padding-bottom: 0.5em;
+        }
+
+
+        img {
+            border-radius: 13px;
+            box-shadow: 0 0 5px 1px var(--secondary-color);
+            width: 90%;
+            height: auto;
+
+            align-self: center;
+            justify-self: self-end;
+        }
+
+        span {
+            display: block;
+        }
+
+        span:nth-of-type(odd) {
+            margin-top: 0.3em;
+        }
+
+        span:nth-of-type(even) {
+            /* margin-left: 0.4em; */
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.4em;
+        }
+
+    }
+}
+
 .empty-favs {
+
     p {
-        color:  var(--secondary-color);
+        color: var(--secondary-color);
         background-color: var(--fourth-color);
         font-weight: bold;
         font-size: 1.2em;
@@ -494,13 +617,18 @@ button {
 
 
 footer {
-    margin-top: 1em;
-    padding-bottom: 1em;
-
-}
-
-footer {
+    margin-top: 2em;
+    border-top: 3px solid var(--secondary-color);
+    padding: 1em 1em;
+    background-color: var(--secondary-color);
+    color: var(--fourth-color);
     text-align: center;
+    box-shadow: 0 -3px 5px 1px var(--fourth-color);
+
+    p:first-of-type {
+        margin-top: 1em;
+    }
+
 }
 
 footer img {

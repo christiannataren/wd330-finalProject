@@ -8,12 +8,33 @@ export class Favorites {
         this.element = element;
 
     }
-    async init() {
-        let wait = await this.loadFavorites();
-        console.log(wait);
+    init() {
+        this.loadFavorites();
     }
 
+    getDataId(id) {
+        return this.favorites.filter((favorite) => favorite.data.id == id)[0].data;
+    }
+    showFavorite(id) {
+        let data = null;
+        try {
+            data = this.getDataId(id);
+        } catch { }
+        if (data == null) {
+            return;
+        }
 
+        console.log(data);
+
+        let content = document.querySelector("#dialog-content");
+        content.innerHTML = Templates.showMore(data);
+        let dialog = document.querySelector("dialog");
+
+        dialog.showModal();
+
+
+
+    }
 
     async loadFavorites() {
         let mapping = await this.likes.map(async function (fav) {
@@ -32,10 +53,34 @@ export class Favorites {
             return info;
         })
         this.favorites = await Promise.all(mapping);
-        console.log(`Favorites: ${this.favorites.length}`);
         this.element.innerHTML = "";
         if (this.favorites.length > 0) {
+            let template = document.createElement("div");
+            let animal = "cat";
+            let dogN = this.favorites.reduce((acc, item) => {
+                if (item.type == "dog") {
+                    acc = acc + 1;
+                }
+                return acc;
+            }, 0);
+            let catN = this.favorites.reduce((acc, item) => {
+                if (item.type == "cat") {
+                    acc = acc + 1;
+                }
+                return acc;
+            }, 0);
+            // let catN = this.favorites.reduce(acc, (item) => { return item.type == "cat"; });
+            if (dogN > catN) {
+                animal = "dog";
+            }
+            template.innerHTML = Templates.results(animal);
+            let result = template.querySelector(".result");
+            result.removeChild(result.querySelector("button"));
+            result.removeChild(result.querySelector("button"));
+            result.classList.add("fav-container");
+            this.element.insertAdjacentHTML("afterbegin", template.innerHTML);
             this.favorites.map(animal => {
+
                 this.element.insertAdjacentHTML("beforeend", Templates.favorite(animal));
             });
         } else {

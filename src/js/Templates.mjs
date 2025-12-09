@@ -24,7 +24,7 @@ export class Templates {
         }
         return `
         <div class="fav-container">
-        <h3>${favorite.type.toUpperCase()}</h3>
+        <div class="header-animal"><h3>${favorite.type.toUpperCase()}</h3></div>
 
         <img src="${data.url}" alt="photo of ${breed.name}" >
         <div class="values">
@@ -34,7 +34,7 @@ export class Templates {
         <span class="value">${(favorite.type == "cat") ? breed.origin : breed.breed_group}</span>
     <span class="hvalue">Temperament:</span>
         <span class="value">${breed.temperament}</span>
-        <button>See more</button>
+        <button data-action="show-more" data-id="${data.id}">See more</button>
     </div>
 
         
@@ -131,11 +131,61 @@ export class Templates {
 
     }
 
+    static addValueIfExist(name, property, data, ending = "") {
+        let value = "";
+        if (property.includes(".")) {
+            let split = property.split(".");
+            try {
+                value = split.reduce((acc, text) => {
+                    acc = acc[text];
+                    return acc;
+                }, data.breeds[0]);
+            } catch { }
+        } else {
+            try {
+                value = data.breeds[0][property]
+            } catch { }
+        }
+
+
+        if (value == "" || value == undefined) {
+            return ""
+        }
+        return `<span class="hvalue">${name}:</span>
+        <span class="value">${value}${(ending.length > 0) ? " " + ending : ""}</span>`
+
+    }
     static emptyFavorites() {
         return `
         <div class="empty-favs">
         <p>Play the Quiz and see your favorites here. </p>
         </div>
         `;
+    }
+    static showMore(data) {
+        let element = `
+        <img src="${data.url}" alt="photo of ${data.breeds[0].name}">
+        <div class="values">
+    ${this.addValueIfExist("Breed", "name", data)}
+    ${this.addValueIfExist("Breed Group", "breed_group", data)}
+    ${this.addValueIfExist("Temperament", "temperament", data)}
+    ${this.addValueIfExist("Life Span", "life_span", data)}
+    ${this.addValueIfExist("Weight", "weight.metric", data, "CM")}
+    ${this.addValueIfExist("Height", "height.metric", data, "CM")}
+    
+    </div>
+        `
+        let template = document.createElement("div");
+        template.insertAdjacentHTML("afterbegin", element);
+        if (Object.hasOwn(data.breeds[0], "description")) {
+            template.insertAdjacentHTML("beforeend", `<h3>Description:</h3><p>${data.breeds[0].description}</p>`);
+
+        } else {
+            if (Object.hasOwn(data.breeds[0], "bred_for")) {
+                template.insertAdjacentHTML("beforeend", `<h3>Bred for:</h3><p>${data.breeds[0].bred_for}</p>`);
+            }
+
+        }
+        return template.innerHTML;
     }
 }

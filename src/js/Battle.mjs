@@ -11,7 +11,6 @@ export class Battle {
     }
     verifyWinner() {
         if (Saver.getLikes().length >= this.winnerChoices) {
-            console.log("Likes son mayores");
             let likes = Saver.getLikes();
             let dogs = likes.filter(animal => animal.type == "dog");
             let cats = likes.filter(animal => animal.type == "cat");
@@ -19,10 +18,6 @@ export class Battle {
             let result = "";
             if (dogs.length > cats.length) {
                 result = "dog";
-
-
-
-
             } else {
                 result = "cat";
             }
@@ -41,15 +36,15 @@ export class Battle {
         //     }, 1000);
         //     return;
         // }
-        console.log(this.verifyWinner());
         if (this.verifyWinner()) {
-            console.log("se escapa");
             return;
         }
 
         this.loading();
         let cat = await this.cat.get();
         let dog = await this.dog.get();
+        cat = [await this.cat.getAnimal(cat[0].id)];
+        dog = [await this.dog.getAnimal(dog[0].id)];
         try {
             cat[0].breeds[0];
             dog[0].breeds[0].name;
