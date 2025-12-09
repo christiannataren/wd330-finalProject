@@ -30,12 +30,6 @@ export class Battle {
         return false;
     }
     async start() {
-        // if (true) {
-        //     setInterval( () => {
-        //         this.addToScreen(Templates.analizingResults());
-        //     }, 1000);
-        //     return;
-        // }
         if (this.verifyWinner()) {
             return;
         }
@@ -43,9 +37,10 @@ export class Battle {
         this.loading();
         let cat = await this.cat.get();
         let dog = await this.dog.get();
-        cat = [await this.cat.getAnimal(cat[0].id)];
-        dog = [await this.dog.getAnimal(dog[0].id)];
+
         try {
+            cat = [await this.cat.getAnimal(cat[0].id)];
+            dog = [await this.dog.getAnimal(dog[0].id)];
             cat[0].breeds[0];
             dog[0].breeds[0].name;
         } catch {

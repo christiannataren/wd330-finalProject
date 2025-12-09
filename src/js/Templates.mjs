@@ -167,10 +167,11 @@ export class Templates {
         <img src="${data.url}" alt="photo of ${data.breeds[0].name}">
         <div class="values">
     ${this.addValueIfExist("Breed", "name", data)}
+    ${this.addValueIfExist("Origin", "origin", data)}
     ${this.addValueIfExist("Breed Group", "breed_group", data)}
     ${this.addValueIfExist("Temperament", "temperament", data)}
     ${this.addValueIfExist("Life Span", "life_span", data)}
-    ${this.addValueIfExist("Weight", "weight.metric", data, "CM")}
+    ${this.addValueIfExist("Weight", "weight.metric", data, "KG")}
     ${this.addValueIfExist("Height", "height.metric", data, "CM")}
     
     </div>

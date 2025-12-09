@@ -3,13 +3,11 @@ import { battle, favorites } from "./Starter.mjs";
 export default class Buttons {
     constructor() {
         document.addEventListener("click", function (event) {
-
             let action = event.target.dataset.action;
             if (action == null) {
 
                 return; //no Button
             }
-            console.log("Clicking button");
             let button = event.target;
             switch (action) {
                 case "nav-li":
@@ -32,8 +30,7 @@ export default class Buttons {
                 case "like":
                     document.querySelector(`#${button.dataset.type}`).classList.add("choosen");
                     button.classList.add("choosen");
-                    Saver.saveLike(button.dataset.type, button.dataset.id);
-                    console.table(Saver.getLikes());
+                    Saver.saveLike(button.dataset.type, button.dataset.id); 
                     setTimeout(function () {
                         battle.start();
                     }, 1000);

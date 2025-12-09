@@ -23,17 +23,11 @@ export class Favorites {
         if (data == null) {
             return;
         }
-
-        console.log(data);
-
         let content = document.querySelector("#dialog-content");
         content.innerHTML = Templates.showMore(data);
         let dialog = document.querySelector("dialog");
 
         dialog.showModal();
-
-
-
     }
 
     async loadFavorites() {
@@ -69,7 +63,6 @@ export class Favorites {
                 }
                 return acc;
             }, 0);
-            // let catN = this.favorites.reduce(acc, (item) => { return item.type == "cat"; });
             if (dogN > catN) {
                 animal = "dog";
             }
