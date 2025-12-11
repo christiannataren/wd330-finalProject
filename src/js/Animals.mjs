@@ -23,6 +23,8 @@ export class Cat extends Animal {
         super("https://api.thecatapi.com");
     }
 
+    
+
 
 
 }
